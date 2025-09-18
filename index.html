@@ -4,55 +4,47 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Job Search | Home</title>
+  <link href="styles.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 
 <body>
   <!-- Navbar -->
-  <nav class="navbar navbar-dark bg-dark sticky-top">
+  <nav class="navbar navbar-dark bg-dark sticky-top navbar-expand-md">
     <div class="container-fluid">
-      <!-- Hamburger -->
-      <button class="navbar-toggler d-md-none" type="button" data-bs-toggle="collapse" 
-              data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" 
-              aria-expanded="false" aria-label="Toggle navigation">
+      <a class="navbar-brand" href="index.html">Job Search</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#topNav" aria-controls="topNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-
-      <!-- Brand -->
-      <a class="navbar-brand ms-2">Job Search</a>
-
-      <!-- Search -->
-      <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search Jobs..." aria-label="Search">
-        <button class="btn btn-outline-light" type="submit">Search</button>
-      </form>
+      <div class="collapse navbar-collapse" id="topNav">
+        <ul class="navbar-nav me-auto mb-2 mb-md-0">
+          <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+          <li class="nav-item"><a class="nav-link" href="postJob.html">Post a Job</a></li>
+          <li class="nav-item"><a class="nav-link" href="browseJob.html">Browse Jobs</a></li>
+        </ul>
+        <form class="d-none d-md-flex me-2" role="search">
+          <input id="site-search-desktop" class="form-control me-2" type="search" placeholder="Search jobs, companies, locations" aria-label="Search">
+          <button class="btn btn-outline-light" type="submit">Search</button>
+        </form>
+        <div class="d-flex gap-2 my-2 my-md-0">
+          <a href="login.html" class="btn btn-outline-light btn-sm">Login</a>
+          <a href="signup.html" class="btn btn-primary btn-sm">Sign Up</a>
+        </div>
+      </div>
     </div>
   </nav>
 
-  <div class="container-fluid">
-    <div class="row content-wrapper">
-      <!-- Sidebar -->
-      <nav class="col-md-3 col-lg-2 d-md-block bg-dark text-white min-vh-100 collapse" id="sidebarMenu">
-        <div class="position-sticky pt-3">
-          <h4 class="text-center py-3 border-bottom">Navigation</h4>
-          <ul class="nav flex-column">
-            <li class="nav-item"><a class="nav-link active text-white" href="index.html">🏠 Home</a></li>
-            <li class="nav-item"><a class="nav-link text-white" href="about.html">ℹ️ About</a></li>
-            <li class="nav-item"><a class="nav-link text-white" href="contact.html">📩 Contact</a></li>
-            <li class="nav-item"><a class="nav-link text-white" href="postJob.html">💼 Post a Job</a></li>
-            <li class="nav-item"><a class="nav-link text-white" href="browseJob.html">👨‍💻 Browse Jobs</a></li>
-          </ul>
-        </div>
-      </nav>
-
+  <div class="container py-4">
       <!-- Page Content -->
-      <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 py-4">
+      <main>
         <!-- Hero Section -->
-        <section class="bg-light text-center py-5 rounded">
+        <section class="bg-light text-center py-5 rounded shadow-sm">
           <h1 class="display-4 fw-bold">Find Your Dream Job</h1>
           <p class="lead">Search thousands of job opportunities across industries and locations.</p>
-          <a href="#" class="btn btn-primary btn-lg">Start Searching</a>
+          <a href="#" id="startSearchBtn" class="btn btn-primary btn-lg">Start Searching</a>
         </section>
 
         <!-- Featured Jobs -->
@@ -87,7 +79,6 @@
           <a href="postJob.html" class="btn btn-light btn-lg">Post a Job</a>
         </section>
       </main>
-    </div>
   </div>
 
   <!-- Footer -->
@@ -100,20 +91,10 @@
           <p>Helping candidates and employers connect through a modern job platform powered by Bootstrap 5.</p>
         </div>
 
-        <!-- Quick Links -->
-        <div class="col-md-4 mb-3">
-          <h5>Quick Links</h5>
-          <ul class="list-unstyled">
-            <li><a href="index.html" class="text-white text-decoration-none">🏠 Home</a></li>
-            <li><a href="about.html" class="text-white text-decoration-none">ℹ️ About</a></li>
-            <li><a href="contact.html" class="text-white text-decoration-none">📩 Contact</a></li>
-            <li><a href="postJob.html" class="text-white text-decoration-none">💼 Post a Job</a></li>
-            <li><a href="browseJob.html" class="text-white text-decoration-none">👨‍💻 Browse Jobs</a></li>
-          </ul>
-        </div>
+        
 
         <!-- Credits -->
-        <div class="col-md-4 mb-3">
+        <div class="col-md-4 ms-md-auto mb-3 text-md-end">
           <h5>Powered By</h5>
           <p>
             Designed with ❤️ using <strong>Bootstrap 5</strong>.  
@@ -127,5 +108,17 @@
       </div>
     </div>
   </footer>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var btn = document.getElementById('startSearchBtn');
+      var inputDesktop = document.getElementById('site-search-desktop');
+      if (btn && inputDesktop) {
+        btn.addEventListener('click', function(e) {
+          e.preventDefault();
+          setTimeout(function(){ try { inputDesktop.focus(); } catch(e) {} }, 50);
+        });
+      }
+    });
+  </script>
 </body>
 </html>
